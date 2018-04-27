@@ -23,8 +23,8 @@ class GameBoard(object):
             self.board[i].extend('O' for i in range(g))
 
     def set_ship(self, s):
-        x = random.randint(0, g)
-        y = random.randint(0, g)
+        x = random.randint(0, g-1)
+        y = random.randint(0, g-1)
         self.board[x][y] = 's'
 
     def check_for_hit(self, x, y):
@@ -33,6 +33,14 @@ class GameBoard(object):
         else:
             return False
 
+    def find_ship(self):
+        for i in range(g):
+            for j in range(0, g, s):
+                if self.check_for_hit(i,j):
+                    print('You sunk my battleship!', i, j)
+
 play = GameBoard()
 play.build_board(g)
 play.set_ship(s)
+print(play.get_board())
+play.find_ship()
