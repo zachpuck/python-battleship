@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 import game
 
 app = Flask(__name__)
@@ -15,8 +15,7 @@ def index():
         for space in current_board[i]:
             print_grid += space + '\n'
 
-    print(print_grid)
-    return print_grid
+    return render_template('index.html', board=current_board)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080)
