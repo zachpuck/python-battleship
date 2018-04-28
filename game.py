@@ -40,16 +40,11 @@ class GameBoard(object):
         except IndexError:
             pass
 
-
     def check_for_hit(self, x, y):
-        try:
-            if self.ship_board[x][y] == 'S':
-                return True
-            else:
-                return False
-        except IndexError:
-            index_error = 'coordinates off map, guess again.'
-            return index_error
+        if self.ship_board[x][y] == 'S':
+            return True
+        else:
+            return False
 
     def find_ship(self):
         for i in range(g):
