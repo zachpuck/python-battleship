@@ -44,8 +44,8 @@ class GameBoard(object):
                 if self.check_for_hit(i,j):
                     print('You sunk my battleship!', i, j)
 
-play = GameBoard()
-play.build_board(g)
-play.set_ship(s)
-print(play.get_board())
-play.find_ship()
+# play = GameBoard()
+# play.build_board(g)
+# play.set_ship(s)
+# print(play.get_board())
+# play.find_ship()
