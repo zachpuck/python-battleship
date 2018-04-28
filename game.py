@@ -10,42 +10,49 @@ class GameBoard(object):
     """
     def __init__(self):
         self.size = None
-        self.board = []
+        self.play_board = []
+        self.ship_board = None
 
-    def get_board(self):
-        return self.board
+    def get_play_board(self):
+        return self.play_board
+    def update_play_board(self, x, y):
+        self.play_board[x][y] = 'm'
 
-    def build_board(self, g):
+    def get_ship_board(self):
+        return self.ship_board
+
+    def build_play_board(self, g):
         for i in range( 0, g):
-            self.board.append([])
+            self.play_board.append([])
         
         for i in range(g):
-            self.board[i].extend('O' for i in range(g))
+            self.play_board[i].extend('O' for i in range(g))
 
     def set_ship(self, s):
         x = random.randint(0, g-1)
         y = random.randint(0, g-1)
 
+        self.ship_board = [spaces[:] for spaces in self.play_board] # self.ship_board = copy.deepcopy(play_board)
+
         try:
             for i in range(s):
-                self.board[x+i][y] = 'S'
+                self.ship_board[x+i][y] = 'S'
         except IndexError:
             pass
 
+
     def check_for_hit(self, x, y):
-        if self.board[x][y] == 's':
-            return True
-        else:
-            return False
+        try:
+            if self.ship_board[x][y] == 'S':
+                return True
+            else:
+                return False
+        except IndexError:
+            index_error = 'coordinates off map, guess again.'
+            return index_error
 
     def find_ship(self):
         for i in range(g):
             for j in range(0, g, s):
                 if self.check_for_hit(i,j):
                     print('You sunk my battleship!', i, j)
-
-# play = GameBoard()
-# play.build_board(g)
-# play.set_ship(s)
-# print(play.get_board())
-# play.find_ship()
