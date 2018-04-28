@@ -1,8 +1,8 @@
 import random
 
 
-g = 3 # grid size
-s = 1 # ship size (currently only 1 space)
+g = 6 # grid size
+s = 3 # ship size
 
 class GameBoard(object):
     """
@@ -25,7 +25,12 @@ class GameBoard(object):
     def set_ship(self, s):
         x = random.randint(0, g-1)
         y = random.randint(0, g-1)
-        self.board[x][y] = 's'
+
+        try:
+            for i in range(s):
+                self.board[x+i][y] = 'S'
+        except IndexError:
+            pass
 
     def check_for_hit(self, x, y):
         if self.board[x][y] == 's':
