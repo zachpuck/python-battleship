@@ -1,0 +1,4 @@
+apiVersion: v1
+description: python battleship chart for kubernetes
+name: battleship-deployment
+version: 0.1.0
