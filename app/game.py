@@ -1,6 +1,7 @@
 import random
 
-
+# TODO: allow for gride and ship size to be inputs to start game
+# TODO: allow for multiple ship
 g = 6 # grid size
 s = 3 # ship size
 
@@ -9,14 +10,13 @@ class GameBoard(object):
     setup and interact with game grid
     """
     def __init__(self):
-        self.size = None
         self.play_board = []
         self.ship_board = None
 
     def get_play_board(self):
         return self.play_board
     def update_play_board(self, x, y):
-        self.play_board[x][y] = 'm'
+        self.play_board[x][y] = 'M'
 
     def get_ship_board(self):
         return self.ship_board
@@ -32,7 +32,7 @@ class GameBoard(object):
         x = random.randint(0, g-1)
         y = random.randint(0, g-1)
 
-        self.ship_board = [spaces[:] for spaces in self.play_board] # self.ship_board = copy.deepcopy(play_board)
+        self.ship_board = [spaces[:] for spaces in self.play_board] # self.ship_board = copy.deepcopy(self.play_board)
 
         try:
             for i in range(s):
@@ -50,4 +50,4 @@ class GameBoard(object):
         for i in range(g):
             for j in range(0, g, s):
                 if self.check_for_hit(i,j):
-                    print('You sunk my battleship!', i, j)
+                    print('You sunk my Battleship!', i, j)
